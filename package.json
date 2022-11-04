@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@betting-api/fonbet": "^0.1.0"
+  }
+}
