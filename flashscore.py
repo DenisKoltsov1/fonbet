@@ -15,15 +15,11 @@ chrome_options = Options()
 chrome_options.add_argument("--disable-extensions")
 driver = webdriver.Chrome(chrome_options=chrome_options)
 html=driver.get("https://www.flashscorekz.com/");
-#email_form = driver.find_element_by_class_name("event__title--type")
 stroka=str("g_1_8QmkYkDb")
-#divelem=driver.find_elements(By.TAG_NAME,'div')
-#individual_element = divelem[0000]
-#individual_element_one=driver.find_elements(By.CLASS_NAME,'event__participant event__participant--home')
 kcal = driver.find_elements(By.XPATH,'//div[@class="event__participant event__participant--home"]')
 for x in  kcal:
     print(x.text)
 time.sleep(1)
-#t=driver.getTitle("Премьер-лига")
+
 
 
