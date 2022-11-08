@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-
+from selenium.webdriver.common.action_chains import ActionChains
 
 # Initialize Chrome WebDriver
 driver = webdriver.Chrome(executable_path="C:\\fonbet\\chromedriver.exe" )
@@ -22,25 +22,21 @@ kcal = driver.find_elements(By.XPATH,'//div[@class="event__participant event__pa
 time.sleep (5)
 #teamHome = driver.find_element(By.XPATH,'//*[@id="g_1_KAOyH3RR"]/div[2]').click()
 element = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.ID, 'onetrust-accept-btn-handler'))).click()
-teamHome = driver.find_element(By.XPATH,'//*[@id="g_1_KAOyH3RR"]/div[3]') 
+live = driver.find_element(By.XPATH,'//*[@id="live-table"]/div[1]/div/div[2]')
+live.click()
+teamHome = driver.find_element(By.XPATH,'//*[@id="g_1_niwjpG14"]') 
 newPage=teamHome.click()
-#//*[@id="detail"]/div[9]/div[1]/div[3]/div
-name = driver.find_element(By.XPATH,'///*[@id="detail"]/div[9]/div[1]/div[3]/div')
-for elem in range(0,3):
-    driver.find_element(By.TAG_NAME,'body').send_keys(
-    Keys.CONTROL + "Tab")
+#//*[@id="live-table"]/div[1]/div/div[2]
+#name = driver.find_element(By.XPATH,'///*[@id="detail"]/div[9]/div[1]/div[3]/div')
 
-#//*[@id="detail"]/div[7]/div/a[3]  
-sostavPage = driver.find_element(By.XPATH,'//*[@id="g_1_KAOyH3RR"]/div[2]').click()   
-#//*[@id="detail"]/div[9]/div[1]/div[2]/div/div[1]/div[1]/a
-for elem in range(0,3):
-    driver.find_element(By.TAG_NAME,'body').send_keys(
-    Keys.CONTROL + "Tab")
-sostav = driver.find_elements(By.CLASS_NAME,'lf__participantName')
-for i in sostav:
-    print(i.text)
+action=ActionChains(driver)
 
-print(teamHome.text)
-print(name.text)
+action.key_down(Keys.ALT).send_keys(Keys.TAB).send_keys(Keys.TAB)
+#sostavPage = driver.find_element(By.XPATH,'//*[@id="detail"]/div[9]/div[1]/div[2]/div')
+#//*[@id="detail"]/div[7]/div/a[3]
+sostavPage = driver.find_element(By.TAG_NAME,'body')  
+print(sostavPage.text)
+#print(teamHome.text)
+#print(name.text)
 
 
