@@ -20,23 +20,16 @@ html=driver.get("https://www.flashscorekz.com/");
 stroka=str("g_1_8QmkYkDb")
 kcal = driver.find_elements(By.XPATH,'//div[@class="event__participant event__participant--home"]')
 time.sleep (5)
-#teamHome = driver.find_element(By.XPATH,'//*[@id="g_1_KAOyH3RR"]/div[2]').click()
+
 element = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.ID, 'onetrust-accept-btn-handler'))).click()
 live = driver.find_element(By.XPATH,'//*[@id="live-table"]/div[1]/div/div[2]')
 live.click()
 teamHome = driver.find_element(By.XPATH,'//*[@id="g_1_niwjpG14"]') 
 newPage=teamHome.click()
-#//*[@id="live-table"]/div[1]/div/div[2]
-#name = driver.find_element(By.XPATH,'///*[@id="detail"]/div[9]/div[1]/div[3]/div')
-
 action=ActionChains(driver)
-
 action.key_down(Keys.ALT).send_keys(Keys.TAB).send_keys(Keys.TAB)
-#sostavPage = driver.find_element(By.XPATH,'//*[@id="detail"]/div[9]/div[1]/div[2]/div')
-#//*[@id="detail"]/div[7]/div/a[3]
 sostavPage = driver.find_element(By.TAG_NAME,'body')  
 print(sostavPage.text)
-#print(teamHome.text)
-#print(name.text)
+
 
 
