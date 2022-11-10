@@ -22,13 +22,32 @@ kcal = driver.find_elements(By.XPATH,'//div[@class="event__participant event__pa
 time.sleep (5)
 
 element = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.ID, 'onetrust-accept-btn-handler'))).click()
-live = driver.find_element(By.XPATH,'//*[@id="live-table"]/div[1]/div/div[2]')
-live.click()
-teamHome = driver.find_element(By.XPATH,'//*[@id="g_1_niwjpG14"]') 
+live = driver.find_element(By.XPATH,'//*[@id="live-table"]/div[1]/div/div[2]')                                                     #нахождение элемента Live
+live.click()                                                                                                                       #нажатие на элемент Live
+teamHome = driver.find_element(By.XPATH,'//*[@id="g_1_C4mFUMeR"]')                                                                 #нажатие на игру для открытия игры
 newPage=teamHome.click()
-action=ActionChains(driver)
-action.key_down(Keys.ALT).send_keys(Keys.TAB).send_keys(Keys.TAB)
-sostavPage = driver.find_element(By.TAG_NAME,'body')  
+
+handles = driver.window_handles                                                                                                    #открытие нового окна браузера с игрой
+size = len(handles)
+
+for x in range(size):                                                                                                              #переход на новое окно
+  driver.switch_to.window(handles[x])
+  print(driver.title)
+
+sostavLink=driver.find_element(By.XPATH,'//*[@id="detail"]/div[7]/div/a[3]')                                                        #безуспешная попытка нажать на вкладку "Составы"
+#sostavLink=sostavLink.get_attribute('textContent')
+#driver.find_element(By.LINK_TEXT,sostavLink).click()
+sostavLink.click()
+print(sostavLink.text)
+'''
+size1 = len(sostavLink)
+for b in  range(size1):
+    print(sostavLink[b].text)
+'''   
+#sostavTeam=driver.find_elements(By.XPATH,'//*[@id="detail"]/div[8]/div[1]/div[2]/div/div[1]/div[1]/a') 
+sostavPage = driver.find_element(By.TAG_NAME,'body') 
+#for x in sostavTeam:
+#    print(x.text) 
 print(sostavPage.text)
 
 
