@@ -1,23 +1,42 @@
 import  sqlite3
-
+from  flashscore import  sostavPage
 try:
     sqlite_connect = sqlite3.connect('C:\\fonbet\\fonbet.sqlite')
-    sqlite_create_table_query = '''CREATE TABLE FonbetTeam_Lineups_Home (
-                                    id INTEGER PRIMARY KEY,
+    
+    
+    if """create table  FonbetTeam_Lineups_Home""":
+        print(" table  FonbetTeam_Lineups_Home creating")
+    else:
+        sqlite_create_table_query = '''CREATE TABLE FonbetTeam_Lineups_Home (
+                                    id INTEGER PRIMARY KEY  AUTO_INCREMENT,
                                     StartTeam TEXT NOT NULL,
                                     SpareTeam text NOT NULL UNIQUE);'''
 
-    sqlite_create_table_query2 = '''CREATE TABLE FonbetTeam_Lineups_Away (
-                                    id INTEGER PRIMARY KEY,
+        sqlite_create_table_query2 = '''CREATE TABLE FonbetTeam_Lineups_Away (
+                                    id INTEGER PRIMARY KEY  AUTO_INCREMENT,
                                     StartTeam TEXT NOT NULL,
                                     SpareTeam text NOT NULL UNIQUE);'''
+        cursor=sqlite_connect.cursor()
+        cursor.execute(sqlite_create_table_query)
+        cursor.execute(sqlite_create_table_query2)
 
     cursor=sqlite_connect.cursor()
-    print("database successfully created and connected to sqlite")
+    for player in sostavPage:
+        print(player.text)
+        sqlite_insert_query = """INSERT INTO FonbetTeam_Lineups_Home
+                            (StartTeam)  VALUES (?) """ 
+        cursor.execute(sqlite_insert_query,[player])
+    
+    
+    
+
 
     
-    cursor.execute(sqlite_create_table_query)
-    cursor.execute(sqlite_create_table_query2)
+    
+
+    
+
+    cursor.execute(sqlite_insert_query,(player))
     sqlite_connect.commit
     print("Таблица SQLite создана")
     

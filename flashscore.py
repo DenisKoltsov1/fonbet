@@ -22,12 +22,14 @@ kcal = driver.find_elements(By.XPATH,'//div[@class="event__participant event__pa
 time.sleep (5)
 
 element = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.ID, 'onetrust-accept-btn-handler'))).click()
-live = driver.find_element(By.XPATH,'//*[@id="live-table"]/div[1]/div/div[2]')                                                     #нахождение элемента Live
-live.click()                                                                                                                       #нажатие на элемент Live
-teamHome = driver.find_element(By.XPATH,'//*[@id="g_1_bPRcMb37"]')                                                                 #нажатие на игру для открытия игры
-newPage=teamHome.click()
-
-
+live = driver.find_element(By.XPATH,'//div[@class="filters__group"]/div[@class="filters__tab"]/div[contains(text(),"LIVE")]') 
+live.click()  
+#teamHome=driver.find_element(By.XPATH,'//span[@class="event__expanderBlock"]')                                                                                                                     #нажатие на элемент Live
+#teamHome.click()
+HomeMatch= driver.find_element(By.XPATH,'//div[@title="Подробности матча!"]')                                                               #нажатие на игру для открытия игры
+newPage=HomeMatch.click()
+#newPages= driver.find_element(By.XPATH,'//body') 
+#print(newPages.text)
 
 handles = driver.window_handles
 driver.switch_to.window(handles[-1])
@@ -39,9 +41,7 @@ sostavPage = driver.find_elements(By.XPATH, "//div[contains(text(), 'Старт�
 for player in sostavPage:
     print(player.text)
  
-driver.quit()
+#driver.quit()
  
 #print(sostavPage.text)
-
-
 
