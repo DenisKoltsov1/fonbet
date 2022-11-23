@@ -25,7 +25,7 @@ try:
         print(player.text)
         sqlite_insert_query = """INSERT INTO FonbetTeam_Lineups_Home
                             (StartTeam)  VALUES (?) """ 
-        cursor.execute(sqlite_insert_query,[player])
+        cursor.execute(sqlite_insert_query,player)
     
     
     
