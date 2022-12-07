@@ -18,7 +18,7 @@ def parser(sostavPages,driver):
     chrome_options.add_argument("--disable-extensions")
 
     html=driver.get("https://www.flashscorekz.com")
-    time.sleep(50)
+    time.sleep(5)
     kcal = driver.find_elements(By.XPATH,'//div[@class="event__participant event__participant--home"]')
     time.sleep (5)
 
